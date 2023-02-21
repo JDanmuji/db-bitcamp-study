@@ -1,0 +1,8 @@
+package dbtest.dao;
+
+public class UpdateMain {
+	
+	public static void main(String[] args) {
+		
+	}
+}

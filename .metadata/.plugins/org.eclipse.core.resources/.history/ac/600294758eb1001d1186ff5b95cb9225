@@ -1,0 +1,21 @@
+package dbtest.dao;
+
+public class InsertMain {
+
+	public InsertMain() {
+		//driver loading
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println(" good");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //Class 타입으로 생성ㄴ
+		
+	}
+	
+	public static void main(String[] args) {
+		InsertMain im = new InsertMain();
+		
+	}
+}

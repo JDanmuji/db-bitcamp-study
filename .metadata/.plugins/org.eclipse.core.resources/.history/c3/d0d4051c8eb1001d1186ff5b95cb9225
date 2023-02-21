@@ -1,0 +1,15 @@
+package dbtest.dao;
+
+public class InsertMain {
+
+	public InsertMain() {
+		//driver loading
+		Class.forName("oracle.jdbc.driver.OracleDriver"); //Class 타입으로 생성ㄴ
+		
+	}
+	
+	public static void main(String[] args) {
+		InsertMain im = new InsertMain();
+		
+	}
+}

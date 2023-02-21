@@ -1,0 +1,30 @@
+package student.dao;
+
+import java.util.Scanner;
+
+public class Student {
+
+	public void menu() {
+		Scanner scan = new Scanner(System.in);
+		
+		while(true) {
+			
+			System.out.println("*******************************");
+			System.out.println("\t관리");
+			System.out.println("*******************************");
+			System.out.println("\t1. 입력");
+			System.out.println("\t1. 검색");
+			System.out.println("\t1. 입력");
+			System.out.println("\t1. 입력");
+			
+			
+			
+		}
+	}
+	
+	public static void main(String[] args) {
+	
+		
+		
+	}
+}

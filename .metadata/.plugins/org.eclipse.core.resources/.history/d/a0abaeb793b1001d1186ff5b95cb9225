@@ -1,0 +1,51 @@
+package dbtest.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class InsertMain {
+	private Connection conn;
+	private PreparedStatement pstmt;
+	
+	public InsertMain() {
+		//driver loading
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println(" good");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //Class 타입으로 생성ㄴ
+		
+	}
+	
+	
+	
+	public void getConnection()  {
+
+		try {
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "c##java", "1234");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void InsertArticles()  {
+
+		pstmt = conn.PreparedStatement("insert into dbtest values('홍길동',25,185.567,sysdate);")		
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		InsertMain im = new InsertMain();
+	
+		
+	}
+}

@@ -1,0 +1,14 @@
+package dbtest.dao;
+
+public class InsertMain {
+
+	public InsertMain() {
+		//driver loading
+		Class.forName("")
+	}
+	
+	public static void main(String[] args) {
+		InsertMain im = new InsertMain();
+		
+	}
+}

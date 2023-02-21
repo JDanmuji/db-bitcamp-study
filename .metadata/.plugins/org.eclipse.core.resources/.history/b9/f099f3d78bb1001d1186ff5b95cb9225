@@ -1,0 +1,9 @@
+package dbtest.dao;
+
+public class InsertMain {
+
+	
+	public static void main(String[] args) {
+		
+	}
+}

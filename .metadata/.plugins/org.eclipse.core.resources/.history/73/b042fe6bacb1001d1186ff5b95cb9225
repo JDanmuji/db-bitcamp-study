@@ -1,0 +1,189 @@
+package student.dao;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Student {
+	private Connection conn;
+	private PreparedStatement  pstmt;
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String name = "C##JAVA";
+	private String passwd = "1234";
+	private ResultSet  rs;
+	
+	public Student() {
+		//driver loading
+		try {
+			Class.forName(driver);
+			System.out.println(" good");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //Class 타입으로 생성ㄴ
+		
+	}
+	
+	
+	
+	public void getConnection()  {
+	
+		try {
+			conn = DriverManager.getConnection(url, name, passwd);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void menu() {
+		Scanner scan = new Scanner(System.in);
+		int num = 0;
+		
+		while(true) {
+			
+			System.out.println("*******************************");
+			System.out.println("\t관리");
+			System.out.println("*******************************");
+			System.out.println("\t1. 입력");
+			System.out.println("\t2. 검색");
+			System.out.println("\t3. 삭제");
+			System.out.println("\t4. 종료");
+			System.out.println("*******************************");
+			System.out.println("번호선택 :");
+			num = scan.nextInt();
+			
+			
+			if(num == 4) break;
+			
+			if (num == 1) {
+				insertArticles();
+			} else if (num == 2) {
+				selectArticles();
+			} else if (num == 3) {
+				//deleteArticles();
+			}
+		
+			
+			
+		}
+	}
+	
+
+	public void insertArticles()  {
+		Scanner scan = new Scanner(System.in);
+		int num = 0;
+
+		while (true) {
+			
+			System.out.println("*******************************");
+			System.out.println("\t1. 학생");
+			System.out.println("\t2. 교수");
+			System.out.println("\t3. 관리자");
+			System.out.println("\t4. 이전 메뉴");
+			System.out.println("*******************************");
+		
+			num = scan.nextInt();
+		
+
+			
+		}
+
+	
+		
+		this.getConnection();
+		
+		String sql = "insert into dbtest values(?, ?, ?, sysdate)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,name);
+			pstmt.setInt(2,age);
+			pstmt.setDouble(3,height);
+					
+			int su = pstmt.executeUpdate();
+			
+			System.out.println(su + "행 이(가) 삽입되었습니다.");
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	
+	public void selectArticles()  {
+
+		this.getConnection();
+		
+		String sql = "select * from dbtest";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(); //테이블처럼 return;
+
+			while(rs.next()){ //레코두 있으면 true, 없으면 false
+			
+				System.out.println(rs.getString("name") + "\t"
+										+ rs.getInt("age")+ "\t"
+										+ rs.getDouble("height")+ "\t"
+										+ rs.getString("logtime")+ "\t"
+									); 
+				
+			
+			
+			}
+					
+			int su = pstmt.executeUpdate();
+			
+			System.out.println(su + "행 이(가) 조회되었습니다.");
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+				if (rs != null) rs.close();
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+	
+		
+		
+	}
+}
