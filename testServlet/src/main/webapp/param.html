@@ -12,6 +12,18 @@
 	
 		color : grey;
 	}
+	
+	#nameDiv {
+		font-size: 8pt;
+		color: pink;
+		font-weight: bold;
+	}
+	
+	#ageDiv {
+		font-size: 8pt;
+		color: pink;
+		font-weight: bold;
+	}
 </style>
 
 </head>
@@ -22,12 +34,19 @@
 	<table border="1" cellpadding="5" cellspacing="0" bgcolor="#FEFBE7">
 	     <tr>
 	     	<td width="70" bgcolor="#F9EBC8">이름</td>
-	     	<td><input type="text" name="name" placeholder="이름을 입력하세요"></td>
+	     	<td>
+	     		<input type="text" name="name" placeholder="이름을 입력하세요">
+	     		<div id="nameDiv"></div>
+	     	</td>
+	     	
 	     </tr>
 	     
 	     <tr>
 	     	<td bgcolor="#F9EBC8">나이</td>
-	     	<td><input type="text" name="age" size="3" maxlength="3"></td>
+	     	<td>
+	     		<input type="text" name="age" size="3" maxlength="3">
+	     		<div id="ageDiv"></div>
+	     	</td>
 	     </tr>
 	     
 	     <tr>
@@ -40,12 +59,29 @@
 </form>
 <script type="text/javascript">
 	
-	function check() {
+	/* function check() {
 		
 		if (document.paramForm.name.value == "" ) {
 			alert("이름을 입력하세요");
 		} else if(document.paramForm.age.value == "" ) {
 			alert("나이를 입력하세요");
+		} else {
+			document.paramForm.submit();
+		}
+	
+	
+	}
+	 */
+
+	function check() {
+		 document.getElementById("nameDiv").innerText="";
+		 document.getElementById("ageDiv").innerText="";
+
+		 
+		if (document.paramForm.name.value == "" ) {
+			document.getElementById("nameDiv").innerText="이름 입력";
+		} else if(document.paramForm.age.value == "" ) {
+			document.getElementById("ageDiv").innerText="나이 입력";
 		} else {
 			document.paramForm.submit();
 		}
