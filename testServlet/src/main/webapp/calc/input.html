@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+td {
+	color: #FCFFE7;
+	background-color: #2B3467;
+}
+h3 {
+	color: #2B3467;
+}
+input {
+	background-color: #FCFFE7;
+}
+#nameDiv {
+	font-size: 8pt;
+	font-weight: bold;
+	color: pink;
+}
+#ageDiv {
+	font-size: 8pt;
+	font-weight: bold;
+	color: violet;
+}
+</style>
+
+</head>
+
+
+
+<body>
+<form name="paramForm" method="get" action="http://localhost:8080/testServlet/CalcServlet">
+<!-- method: get 또는 post 중 데이터 보낼 방식 선택 -->
+<!-- action: submit 눌렀을 때 어느 주소로 데이터 보낼지 지정 -->
+
+<h3>연령제한</h3>
+
+<table border="1" cellpadding="5" cellspacing="0">
+<tr>
+	<td width="70" align="center"><strong>X</strong></td>
+	<td>
+		<input type="text" name="x"  size="7" maxlength="3">
+		<div id="xDiv"></div>
+	</td>
+</tr>
+
+<tr>
+	<td align="center"><strong>Y</strong></td>
+	<td>
+		<input type="text" name="y" size="7" maxlength="3">
+		<div id="yDiv"></div>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="2" align="center">
+		<input type="button" value="계산" onclick="javascript:check()">
+		
+		<!-- form 안 입력상자의 데이터들을 가져감 -->
+		<input type="reset" value="취소">
+	</td>
+</tr>
+</table>
+</form>
+
+<script type="text/javascript">
+
+	function check() {
+		document.getElementById("xDiv").innerText = ""
+		document.getElementById("yDiv").innerText = ""
+		
+		if(document.paramForm.x.value == "")
+			document.getElementById("xDiv").innerText = "x 입력해";
+		else if(document.paramForm.y.value == "")
+			document.getElementById("yDiv").innerText = "y 입력해";
+		else
+			document.paramForm.submit();
+	}
+</script>
+</body>
+</html>

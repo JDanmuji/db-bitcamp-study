@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+td {
+	color: #FCFFE7;
+	background-color: #2B3467;
+}
+h3 {
+	color: #2B3467;
+}
+input {
+	background-color: #FCFFE7;
+}
+#nameDiv {
+	font-size: 8pt;
+	font-weight: bold;
+	color: pink;
+}
+#ageDiv {
+	font-size: 8pt;
+	font-weight: bold;
+	color: violet;
+}
+</style>
+
+</head>
+
+
+
+<body>
+<form name="paramForm" method="post" action="https://www.naver.com">
+<!-- method: get 또는 post 중 데이터 보낼 방식 선택 -->
+<!-- action: submit 눌렀을 때 어느 주소로 데이터 보낼지 지정 -->
+
+<h3>연령제한</h3>
+
+<table border="1" cellpadding="5" cellspacing="0">
+<tr>
+	<td width="70" align="center"><strong>이름</strong></td>
+	<td>
+		<input type="text" name="name" placeholder="이름을 입력하세요">
+		<div id="nameDiv"></div>
+	</td>
+</tr>
+
+<tr>
+	<td align="center"><strong>나이</strong></td>
+	<td>
+		<input type="text" name="age" size="7" maxlength="3">
+		<div id="ageDiv"></div>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="2" align="center">
+		<input type="button" value="보내기" onclick="javascript:check()">
+		
+		<!-- form 안 입력상자의 데이터들을 가져감 -->
+		<input type="reset" value="취소">
+	</td>
+</tr>
+</table>
+</form>
+
+<script type="text/javascript">
+	/* function check() {
+		if(document.paramForm.name.value == "") 
+			alert("이름 입력해");
+		else if(document.paramForm.age.value == "")
+			alert("나이 입력해")
+		else
+			document.paramFrom.submit();
+	} */
+
+	function check() {
+		document.getElementById("nameDiv").innerText = ""
+		document.getElementById("ageDiv").innerText = ""
+		
+		if(document.paramForm.name.value == "")
+			document.getElementById("nameDiv").innerText = "이름 입력해";
+		else if(document.paramForm.age.value == "")
+			document.getElementById("ageDiv").innerText = "나이 입력해";
+		else
+			document.paramFrom.submit();
+	}
+</script>
+</body>
+</html>

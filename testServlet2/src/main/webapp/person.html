@@ -106,7 +106,7 @@
 	     
 	     <tr>
 	     	<td colspan="2" align="center">
-	     		<input type="button" value="SEND"  style="background-color:#DAE5D0" onclick="javascript:check()">
+	     		<input type="button" value="SEND"  style="background-color:#DAE5D0" onclick="check()">
 	     		<input type="reset" value="CANCEL" style="background-color:#A0BCC2">
 	     	</td>
 	     </tr>
@@ -114,31 +114,33 @@
 </form>
 <script type="text/javascript">
 	
-	/* function check() {
-		
-		if (document.paramForm.name.value == "" ) {
-			alert("이름을 입력하세요");
-		} else if(document.paramForm.age.value == "" ) {
-			alert("나이를 입력하세요");
-		} else {
-			document.paramForm.submit();
-		}
-	
-	
-	}
-	 */
 
 	function check() {
 		 document.getElementById("nameDiv").innerText="";
-		 
 
-		 
+		 var check = document.getElementsByName("hobby");
+		 var count = 0;		 
+
+		
+
+		for(i=0; i <check.length; i++) {
+			if(check[i].checked) count++;
+		}
+		
+		if(count == 0) {
+			alert("취미를 선택");
+		}else {
+			alert("개수 = " + count);
+		}
+		
+		/* 
+		// 현재문서.폼이름.name속성명.value == ""
 		if (document.personForm.name.value == "" ) {
 			document.getElementById("nameDiv").innerText="이름 입력";
 		} else {
 			document.personForm.submit();
-		}
-	
+		}*/
+	 
 	
 	}
 	
