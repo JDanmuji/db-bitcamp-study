@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<form name="personForm" method="get" action="https://www.naver.com">
+<form name="personForm" method="get" action="http://localhost:8080/testServlet2/PersonServlet">
 
 	<table border="1" cellpadding="5" cellspacing="0" bgcolor="#FEFBE7">
 	     <tr>
@@ -116,7 +116,14 @@
 	
 
 	function check() {
-		 document.getElementById("nameDiv").innerText="";
+		// 현재문서.폼이름.name속성명.value == ""
+		if (document.personForm.name.value == "" ) {
+			alert("이름 입력");
+			return;
+		}
+		
+		
+		document.getElementById("nameDiv").innerText="";
 
 		 var check = document.getElementsByName("hobby");
 		 var count = 0;		 
@@ -127,19 +134,13 @@
 			if(check[i].checked) count++;
 		}
 		
-		if(count == 0) {
+		if (count == 0) {
 			alert("취미를 선택");
-		}else {
-			alert("개수 = " + count);
+			return;
 		}
 		
-		/* 
-		// 현재문서.폼이름.name속성명.value == ""
-		if (document.personForm.name.value == "" ) {
-			document.getElementById("nameDiv").innerText="이름 입력";
-		} else {
-			document.personForm.submit();
-		}*/
+		document.personForm.submit();
+		
 	 
 	
 	}
