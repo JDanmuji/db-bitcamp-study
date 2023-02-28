@@ -5832,3 +5832,9 @@ Caused by: org.xml.sax.SAXParseExceptionpublicId: platform:/resource/guestbookSe
 
 !ENTRY org.eclipse.lsp4e 1 0 2023-02-28 16:59:53.318
 !MESSAGE [Info]	ESLint server running in node v18.12.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-02-28 18:05:18.136
+!MESSAGE [Info]	ESLint server running in node v18.12.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-02-28 18:36:00.191
+!MESSAGE [Info]	ESLint server running in node v18.12.1

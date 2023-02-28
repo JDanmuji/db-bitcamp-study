@@ -105,41 +105,49 @@ public class GuestbookDAO {
 		return su; 
 	}
 
-//	
-//	public String loginSelect(GuestbookDAO guestbookDAO)  {
-//		String name = "";
-//		this.getConnection();
-//		String sql = "select name  from member where id=? and pwd=?";
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			
-//			pstmt.setString(1, memberDTO.getId());
-//			pstmt.setString(2, memberDTO.getPassWd());
-//			
-//			
-//	         //query문 수행하고 결과셋 객체 얻어오기 
-//	        ResultSet rs = pstmt.executeQuery();
-//			
-//			
-//			while(rs.next()) {
-//	        	
-//	        	 name = rs.getString("name");
-//	        	 
-//	        }
-//			
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			GuestbookDAO.close(conn, pstmt);
-//			
-//		};
-//		
-//		return name; 
-//	}
+	
+	public GuestbookDTO guestbookSelect(GuestbookDTO guestbookDTO)  {
+		GuestbookDTO selectGusetbookDTO = new GuestbookDTO();
+	
+		
+		this.getConnection();
+		String sql = "select name, email, homepage, subject, content, logtime from guestbook where seq=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, guestbookDTO.getSeq());
+			
+			
+			
+	         //query문 수행하고 결과셋 객체 얻어오기 
+	        ResultSet rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+	        	
+				selectGusetbookDTO.setName(rs.getString("name"));
+				selectGusetbookDTO.setEmail(rs.getString("email"));
+				selectGusetbookDTO.setHomepage(rs.getString("homepage"));
+				selectGusetbookDTO.setSubject(rs.getString("subject"));
+				selectGusetbookDTO.setContent(rs.getString("content"));
+				selectGusetbookDTO.setLogtime(rs.getString("logtime"));
+	        	 	 
+	        	 
+	        }
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			GuestbookDAO.close(conn, pstmt);
+			
+		};
+		
+		return selectGusetbookDTO; 
+	}
 
 
 	
