@@ -1,30 +1,53 @@
+var wirteForm = document.writeForm; 
+
+
+
 function select(){
-	document.writeForm.email2.value = document.writeForm.email3.value;
+	wirteForm.email2.value = wirteForm.email3.value;
 }
 
 function checkWrite(){
-	//if(document.writeForm.name.value == "") alert("이름 입력하세요")
-	//if(document.getElementById("name").value == "") alert("이름 입력하세요")
 	
-	document.getElementById("nameDiv").innerText = "";
-	document.getElementById("idDiv").innerText = "";
-	document.getElementById("pwdDiv").innerText = "";
+	var id = document.getElementById("id");
+	var name = document.getElementById("name");
+	var pwd = document.getElementById("pwd");  
+	var rePwd = document.getElementById("repwd");
+	var nameDiv = document.getElementById("nameDiv");
+	var idDiv = document.getElementById("idDiv");
+	var pwdDiv = document.getElementById("pwdDiv");  
 	
-	if(document.getElementById("name").value == "")
-		document.getElementById("nameDiv").innerText="이름 입력";
-	else if(document.getElementById("id").value == "")
-		document.getElementById("idDiv").innerText="아이디 입력";
-	else if(document.getElementById("pwd").value == "")
-		document.getElementById("pwdDiv").innerText="비밀번호 입력";
-	else if(document.getElementById("pwd").value != document.getElementById("repwd").value)
-		document.getElementById("pwdDiv").innerText="비밀번호가 맞지 않습니다";
-	else
-		document.writeForm.submit();
+	nameDiv.innerText = "";
+	idDiv.innerText = "";
+	pwdDiv.innerText = "";
+	
+	if (name.value == "") {
+		 
+		nameDiv.innerText="이름 입력";
+		
+	} else if (id.value == "") {
+		
+		idDiv.innerText="아이디 입력";
+		
+	} else if (pwd.value == "") {
+		
+		pwdDiv.innerText="비밀번호 입력";
+		
+	} else if (pwd.value != rePwd.value) {
+		
+		pwdDiv.innerText="비밀번호가 맞지 않습니다";
+		
+	} else {
+		
+		wirteForm.submit();
+			
+	}
+	
 }
 
 
 function post() {
-	
+	var zipCode = document.getElementsByName("zipcode"); 
+	var addr1 = document.getElementsByName("addr1");
 
 	new daum.Postcode({
     	oncomplete: function(data) {
@@ -45,10 +68,10 @@ function post() {
                 
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementsByName("zipcode").value = data.zonecode;
-                document.getElementsByName("addr1").value = addr;
+                zipCode.value = data.zonecode;
+                addr1.value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                //document.getElementById("addr3").focus();
+                //document.getElementById("addr2").focus();
                
 
             

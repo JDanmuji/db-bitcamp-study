@@ -89,6 +89,42 @@ public class MemberDAO {
 		return su; 
 	}
 
+	
+	public String loginSelect(MemberDTO memberDTO)  {
+		String name = "";
+		this.getConnection();
+		String sql = "select name  from member where id=? and pwd=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, memberDTO.getId());
+			pstmt.setString(2, memberDTO.getPassWd());
+			
+			
+	         //query문 수행하고 결과셋 객체 얻어오기 
+	        ResultSet rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+	        	
+	        	 name = rs.getString("name");
+	        	 
+	        }
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt);
+			
+		};
+		
+		return name; 
+	}
+
 
 
 	private static void close(Connection conn, PreparedStatement pstmt) {
