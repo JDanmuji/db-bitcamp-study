@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
 import member.bean.MemberDTO;
@@ -79,7 +80,11 @@ public class MemberDAO {
 			
 			
 			
-		} catch (SQLException e) {
+		} catch (SQLIntegrityConstraintViolationException e) {
+			su = 2;
+			e.printStackTrace();
+		} 
+		catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			MemberDAO.close(conn, pstmt);
