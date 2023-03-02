@@ -21,7 +21,7 @@ public class GuestbookListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 데이터
 		int pg = Integer.parseInt(request.getParameter("pg"));
 	
@@ -35,11 +35,20 @@ public class GuestbookListServlet extends HttpServlet {
 		
 		int total = guestbookDAO.getTotal();
 		
+		int paging = (total+1)/2;
+		
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
+		out.println("<style>");
+		out.println("div {float: left; width: 20px; height: 20px; margin-left: 5px;}");
+		out.println("#currentDiv {float: left; border: 1px red solid; width: 20px; height: 20px; margin-left: 5px;}");
+		out.println("#currentPaging {color: red; text-decoration: none;}");
+		out.println("#paging {color: blue; text-decoration: none;}");
+		out.println("</style>");
 		out.println("<body>");
+	
 		
 		if(list != null) {
 			
@@ -93,6 +102,20 @@ public class GuestbookListServlet extends HttpServlet {
 		
 			
 			}
+		
+		out.println("<br>");
+		
+		for(int i = 1; i <= paging; i++) {
+			if (i == pg) {
+				out.println("<div id='currentDiv'><a  id='currentPaging' href='http://localhost:8080/GuestbookListServlet?pg="+ i + "'>"+ i + "</a></div>&nbsp");
+			} else {
+				out.println("<div id='pagingDiv'><a  id='paging' href='http://localhost:8080/GuestbookListServlet?pg="+ i + "'>"+ i + "</a></div>&nbsp");	
+			}
+			
+		}
+		
+		out.println("<br><br>");
+		
 		out.println("<input type='button' value='목록' onclick=location.href='http://localhost:8080/guestbook/guestbookSearch.html'");
 		}
 		out.println("</body>");
