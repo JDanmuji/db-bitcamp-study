@@ -152,15 +152,21 @@ public class GuestbookDAO {
 
 
 
-	public ArrayList<GuestbookDTO> guestbookList() {
+	public ArrayList<GuestbookDTO> guestbookList(int startNum, int endNum) {
 		ArrayList<GuestbookDTO> list = new ArrayList<GuestbookDTO>();
 	
 		
 		this.getConnection();
-		String sql = "select name, email, homepage, subject, content, logtime from guestbook order by seq desc";
+		
+		String sql = "Select b.name, b.email, b.homepage, b.subject, b.content, b.logtime from ( SELECT ROWNUM rn, aa.* FROM   (SELECT seq, name, email,  homepage, subject, content, to_char(logtime, 'YYYY.MM.DD') AS logtime FROM   guestbook  ORDER  BY seq DESC) aa) b WHERE b.rn >= ? and b.rn <= ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
+			
+			
 			rs = pstmt.executeQuery();
 	         //query문 수행하고 결과셋 객체 얻어오기 
 	       
@@ -188,6 +194,39 @@ public class GuestbookDAO {
 			
 		};
 		return list;
+	}
+
+
+
+	public int getTotal() {
+		int total = 0;
+	
+		
+		this.getConnection();
+		String sql = "select count(*) as cnt from guestbook";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+	         //query문 수행하고 결과셋 객체 얻어오기 
+	        ResultSet rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+	        	
+				total =  Integer.parseInt(rs.getString("cnt"));
+	        	 
+	        }
+				
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			GuestbookDAO.close(conn, pstmt);
+			
+		};
+		
+		return total;
 	}
 
 

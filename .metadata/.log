@@ -7045,3 +7045,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.lsp4e 1 0 2023-03-02 14:36:23.098
 !MESSAGE [Info]	ESLint server running in node v18.12.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-03-02 16:07:16.323
+!MESSAGE [Info]	ESLint server running in node v18.12.1

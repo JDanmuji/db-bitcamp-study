@@ -12,6 +12,7 @@ public class GuestbookDTO {
 	
 	
 	
+	
 	public int getSeq() {
 		return seq;
 	}

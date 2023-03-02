@@ -23,9 +23,17 @@ public class GuestbookListServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 데이터
+		int pg = Integer.parseInt(request.getParameter("pg"));
+	
+		System.out.println("+++++" + pg);
+		int endNum = pg*2;
+		int startNum = endNum-1;
+		 
 		//DB 
 		GuestbookDAO guestbookDAO = GuestbookDAO.getInstance();
-		ArrayList<GuestbookDTO> list = guestbookDAO.guestbookList();
+		ArrayList<GuestbookDTO> list = guestbookDAO.guestbookList(startNum, endNum);
+		
+		int total = guestbookDAO.getTotal();
 		
 		
 		response.setContentType("text/html;charset=UTF-8");
