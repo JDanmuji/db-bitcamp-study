@@ -1,6 +1,6 @@
 var guestbookSearchForm = document.guestbookSearchForm; 
 
-
+let check = /^[0-9]+$/; 
 
 function search(){
 	
@@ -15,9 +15,13 @@ function search(){
 	if (num.value == "") {
 		 
 		numDiv.innerText = "글번호 입력하세요.";
+	
+	} else if (check.test(num.val)) {
+		
+		numDiv.innerText = "숫자만 입력하세요.";
 		
 	} else {
-		guestbookSearchForm.action = "http://localhost:8080/GuestbookSearchServlet";
+		guestbookSearchForm.action = "http://localhost:8080/GuestbookListServlet";
 		guestbookSearchForm.submit();
 			
 	}

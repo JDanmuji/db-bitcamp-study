@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import guestbook.bean.GuestbookDTO;
@@ -147,6 +148,46 @@ public class GuestbookDAO {
 		};
 		
 		return selectGusetbookDTO; 
+	}
+
+
+
+	public ArrayList<GuestbookDTO> guestbookList() {
+		ArrayList<GuestbookDTO> list = new ArrayList<GuestbookDTO>();
+	
+		
+		this.getConnection();
+		String sql = "select name, email, homepage, subject, content, logtime from guestbook order by seq desc";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+	         //query문 수행하고 결과셋 객체 얻어오기 
+	       
+			
+	        
+			while(rs.next()) {
+				GuestbookDTO guestbookDTO = new GuestbookDTO();
+				
+				guestbookDTO.setName(rs.getString("name"));
+				guestbookDTO.setEmail(rs.getString("email"));
+				guestbookDTO.setHomepage(rs.getString("homepage"));
+				guestbookDTO.setSubject(rs.getString("subject"));
+				guestbookDTO.setContent(rs.getString("content"));
+				guestbookDTO.setLogtime(rs.getString("logtime"));
+	        	 	 
+				list.add(guestbookDTO);
+	        }
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			GuestbookDAO.close(conn, pstmt);
+			
+		};
+		return list;
 	}
 
 

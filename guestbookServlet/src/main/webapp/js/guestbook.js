@@ -46,6 +46,7 @@ function checkWrite(){
 }
 
 function clickList(){
+		guestbookForm.action = "http://localhost:8080/GuestbookListServlet";
+		guestbookForm.submit();
 	
-	alert("글 목록은 준비중입니다.");
 }

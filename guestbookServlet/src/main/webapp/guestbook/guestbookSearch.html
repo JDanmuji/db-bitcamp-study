@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-div {
+#numDiv {
 	color: red;
 	font-size: 8pt;
 	font-weight: bold;
@@ -13,21 +13,17 @@ div {
 </head>
 <body>
 <form name="guestbookSearchForm" method="post">
- <table border="1" cellpadding="5" cellspacing="0">
-  <tr>
-  	<th>글번호 입력 : </th>
-  	<td>
-  	 <input type="text" name="num" id="num" size="30">
-  	 <div id="numDiv"></div>
-  	</td>
-  </tr>
+ <div text-align="center">
+ 
+ 글번호 입력 :
+  	
+ <input type="text" name="num" id="num" size="30">
+ <input type="button" value="검색" onclick="search()">
+ <div id="numDiv"></div>
+ 
   
-  <tr>
-  	<td colspan="2" align="center">
-  	 <input type="button" value="검색" onclick="search()">
-  	</td>
-  </tr>
- </table>
+  
+ </div>
 </form>
 
 <!-- 절대주소 -->
