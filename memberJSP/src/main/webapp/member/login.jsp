@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="member.dao.MemberDAO" %>
 <%
 	//데이터
@@ -9,6 +10,8 @@
 	//DB
 	MemberDAO memberDAO = MemberDAO.getInstance();
 	String name = memberDAO.memberLogin(id, pwd);
+	
+	pageContext.setAttribute("id", id);
 %>
 
 <!DOCTYPE html>
@@ -24,7 +27,7 @@
 <% }else{ %>
 	<h3><%=name %>님 로그인</h3>
 	<br>
-	<input type="button" value="회원정보수정" onclick="">
+	<input type="button" value="회원정보수정" onclick="location.href='updateForm.jsp?id=${id}'">
 <%} %>
 </body>
 </html>
