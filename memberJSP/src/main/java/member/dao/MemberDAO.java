@@ -157,8 +157,6 @@ public class MemberDAO {
 	public boolean memberUpdate(MemberDTO memberDTO, String id, String name) {
 		boolean result = false;
 		
-		System.out.println("IUD"+id);
-		System.out.println("IUD"+name);
 		this.getConnection(); //접속
 		
 		String sql = "update member set name=?, pwd=?, gender=?, email1=?, email2=?, tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=? where id=?";
@@ -180,10 +178,9 @@ public class MemberDAO {
 			pstmt.setString(11, memberDTO.getAddr2());
 			
 			pstmt.setString(12, memberDTO.getId());
-			System.out.println("name________________" + memberDTO.getId());
-			System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + pstmt.executeUpdate() );
+			
 			result = pstmt.executeUpdate() == 1? true : false; //실행 - 개수 리턴			
-			System.out.println("Aaaaaaaaaaaaaaaaaaaaaaaaaa" + result );
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

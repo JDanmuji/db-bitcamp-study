@@ -1,10 +1,10 @@
+var form = document.forms[0];
+
 function select(){
-	document.writeForm.email2.value = document.writeForm.email3.value;
+	form.email2.value = form.email3.value;
 }
 
 function checkWrite(){
-	//if(document.writeForm.name.value == "") alert("이름 입력하세요")
-	//if(document.getElementById("name").value == "") alert("이름 입력하세요")
 	
 	document.getElementById("nameDiv").innerText = "";
 	document.getElementById("idDiv").innerText = "";
@@ -19,7 +19,7 @@ function checkWrite(){
 	else if(document.getElementById("pwd").value != document.getElementById("repwd").value)
 		document.getElementById("pwdDiv").innerText="비밀번호가 맞지 않습니다";
 	else
-		document.writeForm.submit();
+		form.submit();
 }
 
 /* Daum 우편번호 */
@@ -49,14 +49,31 @@ function execDaumPostcode() {
     }).open();
 }
 
-function memeberUpdateFormSelect() {
+
+function checkUpdate() {
+	document.getElementById("pwdDiv").innerText = "";
 	
-	
+	if(document.getElementById("pwd").value == "")
+		document.getElementById("pwdDiv").innerText="비밀번호 입력";
+	else if(document.getElementById("pwd").value != document.getElementById("repwd").value)
+		document.getElementById("pwdDiv").innerText="비밀번호가 맞지 않습니다";
+	else
+		document.getElementById("id").disabled = false;
+		form.submit();
 }
 
 
-
-
+function checkLogin(){
+	document.getElementById("idDiv").innerText = "";
+	document.getElementById("pwdDiv").innerText = "";
+	
+	if(document.getElementById("id").value == "")
+		document.getElementById("idDiv").innerText="아이디 입력";
+	else if(document.getElementById("pwd").value == "")
+		document.getElementById("pwdDiv").innerText="비밀번호 입력";
+	else
+		form.submit();
+}
 
 
 
