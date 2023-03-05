@@ -1,29 +1,81 @@
+//html common form
+//html 당 form tag가 하나만 있어 index : 0 fix 
 var form = document.forms[0];
 
+
+function idCheck() {
+	var check = true;
+	
+	var idDivTag = document.getElementById("idDiv");
+	var idValue = document.getElementById("id").value;
+	
+	idDivTag.innerText = "";
+	
+	if (!idValue) {
+		idDivTag.innerText = "아이디 입력";
+		check = false;
+	}
+	
+	return check;	
+}
+
+function pwdCheck() {
+	var check = true;
+	
+	var pwdDivTag = document.getElementById("pwdDiv");
+	var pwdValue = document.getElementById("pwd").value;
+	
+	pwdDivTag.innerText = "";
+	
+	if (!pwdValue) {
+		pwdDivTag.innerText="비밀번호 입력";
+		check = false;
+	}	
+
+	return check;
+}
+
+function nameCheck() {
+	var check = true;
+	
+	var nameDivTag = document.getElementById("nameDiv");
+	var nameValue = document.getElementById("name").value;
+	
+	nameDivTag.innerText = "";
+	
+	if (!nameValue) {
+		nameDivTag.innerText="이름 입력";
+		check = false;
+	}	
+
+	return check;	
+}
+
+function rePwdCheck() {
+	var check = true;
+	
+	var pwdValue = document.getElementById("pwd").value;
+	var pwdDivTag = document.getElementById("pwdDiv");
+	var rePwdValue = document.getElementById("repwd").value;
+	
+	if (pwdValue !== rePwdValue) {
+		pwdDivTag.innerText="비밀번호가 맞지 않습니다";
+		check = false;
+	}
+
+	return check;
+}
+ 
 function select(){
 	form.email2.value = form.email3.value;
 }
 
-function checkWrite(){
-	
-	document.getElementById("nameDiv").innerText = "";
-	document.getElementById("idDiv").innerText = "";
-	document.getElementById("pwdDiv").innerText = "";
-	
-	if(document.getElementById("name").value == "")
-		document.getElementById("nameDiv").innerText="이름 입력";
-	else if(document.getElementById("id").value == "")
-		document.getElementById("idDiv").innerText="아이디 입력";
-	else if(document.getElementById("pwd").value == "")
-		document.getElementById("pwdDiv").innerText="비밀번호 입력";
-	else if(document.getElementById("pwd").value != document.getElementById("repwd").value)
-		document.getElementById("pwdDiv").innerText="비밀번호가 맞지 않습니다";
-	else
-		form.submit();
-}
-
 /* Daum 우편번호 */
 function execDaumPostcode() {
+	var zipCode =  document.getElementById('zipcode');
+	var addr1 =  document.getElementById("addr1");
+	var addr2 = document.getElementById("addr2");
+	 
     new daum.Postcode({
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -41,40 +93,67 @@ function execDaumPostcode() {
             }
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('zipcode').value = data.zonecode;
-            document.getElementById("addr1").value = addr;
+           	zipCode.value = data.zonecode;
+           	addr1.value = addr;
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("addr2").focus();
+            addr2.focus();
         }
     }).open();
 }
 
+function checkLogin(){
+	
+	if (!idCheck()) {
+		return;
+	}
+	
+	if (!pwdCheck()) {
+		return
+	}
+
+	form.submit();
+}
+
+
+function checkWrite(){
+	
+	if (!nameCheck()) {
+		return;
+	}
+	
+	if (!idCheck()) {
+		return;
+	}
+	
+	if (!pwdCheck()) {
+		return;
+	}
+	
+	if (!rePwdCheck()) {
+		return;
+	}			
+	
+	form.submit();
+}
 
 function checkUpdate() {
-	document.getElementById("pwdDiv").innerText = "";
+
+	if (!nameCheck()) {
+		return;
+	}
+
+	if (!pwdCheck()) {
+		return;
+	}
 	
-	if(document.getElementById("pwd").value == "")
-		document.getElementById("pwdDiv").innerText="비밀번호 입력";
-	else if(document.getElementById("pwd").value != document.getElementById("repwd").value)
-		document.getElementById("pwdDiv").innerText="비밀번호가 맞지 않습니다";
-	else
-		document.getElementById("id").disabled = false;
-		form.submit();
-}
-
-
-function checkLogin(){
-	document.getElementById("idDiv").innerText = "";
-	document.getElementById("pwdDiv").innerText = "";
+	if (!rePwdCheck()) {
+		return;
+	}
 	
-	if(document.getElementById("id").value == "")
-		document.getElementById("idDiv").innerText="아이디 입력";
-	else if(document.getElementById("pwd").value == "")
-		document.getElementById("pwdDiv").innerText="비밀번호 입력";
-	else
-		form.submit();
+	//disable tag submit 전송 불가, 전송 전 disable 해제
+	document.getElementById("id").disabled = false;
+	form.submit();
 }
-
 
 
 

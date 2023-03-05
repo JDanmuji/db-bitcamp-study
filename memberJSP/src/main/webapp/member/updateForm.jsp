@@ -132,29 +132,39 @@ div {
 <script type="text/javascript">
 
 
-window.onload = function(){
+window.onload = function() {
+	var genderSearch = ${memberDTO.gender};
+	var email2Search =  '${memberDTO.email2}';
+	var tel1Search = '${memberDTO.tel1}';
 	
-	var data =  '${memberDTO.email2}';
-	if (${memberDTO.gender} == 0) {
-		document.getElementById("gender_m").checked = true;
+	var gendermRadio = document.getElementById("gender_m");
+	var genderfRadio = document.getElementById("gender_f");
+	
+	var email3Tag = document.getElementById("email3");
+	var tel1Tag =  document.getElementById("tel1");
+	
+	//Search Radio check
+	if (genderSearch == 0) {
+		gendermRadio.checked = true;
 	} else {
-		document.getElementById("gender_f").checked = true;
+		genderfRadio.checked = true;
 	}
 	
 	
-	for(var i=0; i < document.getElementById("email3").length; i++) {
+	//Search email2 SelectBox check
+	for (var i = 0; i < email3Tag.length; i++) {
 		
-		if (document.getElementById("email3")[i].value ==data ){
-			document.getElementById("email3")[i].selected = true;
+		if (email3Tag[i].value == email2Search) {
+			email3Tag[i].selected = true;
 		}
 	}
 	
 
-	
-	for(var i=0; i < document.getElementById("tel1").length; i++) {
+	//Search tel1 SelectBox check
+	for (var i = 0; i < tel1Tag.length; i++) {
 		
-		if (document.getElementById("tel1")[i].value =='${memberDTO.tel1}' ){
-			document.getElementById("tel1")[i].selected = true;
+		if (tel1Tag[i].value == tel1Search){
+			tel1Tag[i].selected = true;
 		}
 	}
 

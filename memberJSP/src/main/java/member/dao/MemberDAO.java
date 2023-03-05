@@ -25,15 +25,20 @@ public class MemberDAO {
 		return memberDAO;
 	}
 
+	//overload
 	public static void close(Connection conn, PreparedStatement pstmt) {
+		
 		try {
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
+	
 	public static void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+	
 		try {
 			if(rs != null) rs.close();
 			if(pstmt != null) pstmt.close();
@@ -41,29 +46,34 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public MemberDAO() {
+		
 		try {
 			Class.forName(driver); //Class타입으로 생성
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public void getConnection() {
+		
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}                                             
+		}
+		
 	}
 	
 	public int memberWrite(MemberDTO memberDTO) {
 		int su = 0;
 		
 		this.getConnection(); //접속
-		String sql = "insert into member values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
+		String sql = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?,?,SYSDATE)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);//생성
@@ -97,7 +107,7 @@ public class MemberDAO {
 		MemberDTO memberDTO = new MemberDTO();
 		
 		String name = null;
-		String sql = "SELECT * FROM MEMBER where id=?";
+		String sql = "SELECT * FROM member WHERE id=?";
 		getConnection(); //접속
 		
 		try {
@@ -133,7 +143,7 @@ public class MemberDAO {
 
 	public String memberLogin(String id, String pwd){
 		String name = null;
-		String sql = "SELECT * FROM MEMBER where id=? and pwd=?";
+		String sql = "SELECT * FROM MEMBER where id=? AND pwd=?";
 		getConnection(); //접속
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -159,7 +169,7 @@ public class MemberDAO {
 		
 		this.getConnection(); //접속
 		
-		String sql = "update member set name=?, pwd=?, gender=?, email1=?, email2=?, tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=? where id=?";
+		String sql = "UPDATE member SET name=?, pwd=?, gender=?, email1=?, email2=?, tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=? WHERE id=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);//생성

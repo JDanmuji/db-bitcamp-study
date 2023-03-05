@@ -38,7 +38,6 @@
 	MemberDAO memberDAO = MemberDAO.getInstance();
 	boolean result = memberDAO.memberUpdate(memberDTO, id, name);
 	
-	pageContext.setAttribute("id", id);
 %>
 
 <!DOCTYPE html>
@@ -50,11 +49,11 @@
 <body>
 <% if(result) { %>
 	<h3>회원정보 수정 완료</h3>
-	
+	<input type='button' value='로그인' onclick=location.href='loginForm.jsp'>
 <% }else{ %>
 	<h3>회원정보 수정 실패</h3>
 	<br>
-	<input type="button" value="다시 회원정보수정" onclick="location.href='updateForm.jsp?id=${id}'">
+	<input type='button' value='뒤로' onclick='history.go(-1)'>
 <%} %>
 </body>
 </html>
