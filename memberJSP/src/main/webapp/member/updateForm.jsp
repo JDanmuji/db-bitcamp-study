@@ -5,7 +5,10 @@
 <%@ page import="member.bean.MemberDTO" %>
 <%
 	//데이터
-	String id = request.getParameter("id");
+	//String id = request.getParameter("id");
+
+	//데이터 세션으로 얻어옴
+	String id = session.getAttribute("memId").toString();
 
 	//DB
 	MemberDAO memberDAO = MemberDAO.getInstance();

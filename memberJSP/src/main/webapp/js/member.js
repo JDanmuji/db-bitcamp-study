@@ -156,6 +156,17 @@ function checkUpdate() {
 }
 
 
+function checkDelete() {
+
+	if (!pwdCheck()) {
+		return;
+	}
+	
+	
+	form.submit();
+}
+
+
 
 
 

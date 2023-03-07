@@ -51,9 +51,9 @@
 	<h3>회원정보 수정 완료</h3>
 	<input type='button' value='로그인' onclick=location.href='loginForm.jsp'>
 <% }else{ %>
-	<h3>회원정보 수정 실패</h3>
-	<br>
-	<input type='button' value='뒤로' onclick='history.go(-1)'>
+
+	session.setAttribute("result", "false");
+	response.sendRedirect("deleteForm.jsp");
 <%} %>
 </body>
 </html>

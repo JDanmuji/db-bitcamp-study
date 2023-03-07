@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import lombok.Getter;
+import lombok.Setter;
 import member.bean.MemberDTO;
+
 
 public class MemberDAO {
 	private Connection conn;
@@ -199,6 +202,31 @@ public class MemberDAO {
 		}
 		
 		return result;
+	}
+	
+	
+	public boolean memberDelete(String id, String pwd){
+		boolean result = false;
+		
+		String sql = "DELETE from MEMBER where id=? AND pwd=?";
+		
+		getConnection(); //접속
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			
+			
+			result = pstmt.executeUpdate() == 1? true : false; //실행 - 개수 리턴			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt, rs);
+		}
+		
+		return result;	
 	}
 }
 
