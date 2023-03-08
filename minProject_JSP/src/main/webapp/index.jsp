@@ -28,7 +28,7 @@ a:active { color: yellow; text-decoration : none;}
 	<a href="./board/boardWriteForm.jsp">글쓰기</a><br>
 <% } %>
 
-<a href="./member/writeForm.jsp">목록</a><br>	
+<a href="./board/boardList.jsp?pg=1">목록</a><br>	
 </h3>
 </div>
 </body>

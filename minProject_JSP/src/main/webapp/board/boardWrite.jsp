@@ -9,7 +9,7 @@
 	String id = session.getAttribute("memId").toString();
 	String subject = request.getParameter("subject");
 	String content = request.getParameter("content");
-	
+	//map 으로 처리
 
 	BoardDTO boardDTO = new BoardDTO();
 	boardDTO.setId(id);
@@ -39,7 +39,7 @@
 window.onload = function() {
 	var result = ${result};
 	
-	//Search Radio check
+	//result check
 	if (result) {
 		alert("글 작성 성공");		
 		window.location.href="http://localhost:8080/index.jsp";
@@ -49,9 +49,6 @@ window.onload = function() {
 	}
 	
 }
-
-
-
 
 
 </script>

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import board.bean.BoardDTO;
 import lombok.Getter;
@@ -98,6 +99,81 @@ public class BoardDAO {
 		
 		return result;
 	}
+	
+	public  List<BoardDTO> boardList(int startNum, int endNum) {
+		List<BoardDTO> list = new ArrayList<>();
+		
+		this.getConnection(); //접속
+		//String sql = "SELECT seq, subject, name, hit, to_char(logtime, 'YYYY.MM.DD') as logTime FROM BOARD WHERE 1=1";
+		
+		String sql = "select b.seq, b.subject, b.name, b.hit, b.logtime from (SELECT rownum as rn, a.* from (select seq, subject, name, hit, to_char(logtime, 'YYYY.MM.DD') as logtime FROM board order by seq desc) a) b where b.rn >=? and b.rn <=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);//생성
+			
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			//if 문 이었따..
+			while(rs.next()) {
+				BoardDTO boardDTO = new BoardDTO();
+				
+				boardDTO.setSeq(rs.getString("seq"));
+				boardDTO.setSubject(rs.getString("subject"));
+				boardDTO.setName(rs.getString("name"));
+				boardDTO.setHit(rs.getString("hit"));
+				boardDTO.setLogTime(rs.getString("logTime"));
+
+				list.add(boardDTO);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BoardDAO.close(conn, pstmt);
+		}
+		
+		return list;
+	}
+	
+	
+	public int getTotal() {
+		int total = 0;
+	
+		
+		this.getConnection();
+		String sql = "select count(*) as cnt from board";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+	         //query문 수행하고 결과셋 객체 얻어오기 
+	        ResultSet rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+	        	
+				total =  Integer.parseInt(rs.getString("cnt"));
+	        	 
+	        }
+				
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BoardDAO.close(conn, pstmt);
+			
+		};
+		
+		return total;
+	}
+
+
+	
 	
 }
 

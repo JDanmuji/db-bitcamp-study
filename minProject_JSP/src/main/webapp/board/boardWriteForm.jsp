@@ -1,7 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="board.dao.BoardDAO" %>
+<%@ page import="board.bean.BoardDTO" %>
+<%
+	//데이터
+	request.setCharacterEncoding("UTF-8"); //post인 경우
+	
+	//map 으로 처리
 
+	BoardDTO boardDTO = new BoardDTO();
+	
+	
+	//DB
+	BoardDAO boardDAO = BoardDAO.getInstance();
+	boolean result = boardDAO.boardWrite(boardDTO);
+	
+	pageContext.setAttribute("result", result);
+
+%>
 
 <!DOCTYPE html>
 <html>
