@@ -30,9 +30,4 @@ function checkBoardWrite(){
 	}
 	
 }
-/*
-function clickList(){
-		guestbookForm.action = "http://localhost:8080/GuestbookListServlet?pg=1";
-		guestbookForm.submit();
-	
-}*/
+
