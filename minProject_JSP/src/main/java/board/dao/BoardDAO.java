@@ -172,7 +172,7 @@ public class BoardDAO {
 			//?에 데이터 주입
 			pstmt.setInt(1, seq);
 			
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
 			//if 문 이었따..
 			while(rs.next()) {

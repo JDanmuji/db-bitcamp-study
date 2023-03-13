@@ -24,6 +24,7 @@ public class BoardPaging {
 		int startPage = (currentPage-1) / pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
 		
+		
 		if (endPage > totalP) {
 			endPage = totalP;
 		}
