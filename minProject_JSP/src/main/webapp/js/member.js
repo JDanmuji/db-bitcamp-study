@@ -19,6 +19,22 @@ function idCheck() {
 	return check;	
 }
 
+function idDupCheck() {
+	var check = true;
+	
+	var idDivTag = document.getElementById("idDiv");
+	var idValue = document.getElementById("id").value;
+	
+	idDivTag.innerText = "";
+	
+	if (!idValue) {
+		idDivTag.innerText = "아이디 입력";
+		check = false;
+	}
+	
+	return check;	
+}
+
 function pwdCheck() {
 	var check = true;
 	
@@ -68,6 +84,11 @@ function rePwdCheck() {
  
 function select(){
 	form.email2.value = form.email3.value;
+}
+
+function loginCheck() {
+	
+	
 }
 
 /* Daum 우편번호 */

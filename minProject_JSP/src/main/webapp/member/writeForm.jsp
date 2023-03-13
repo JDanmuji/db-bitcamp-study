@@ -27,7 +27,8 @@ div {
   <tr>
   	<th>아이디</th>
   	<td>
-  	 <input type="text" name="id" id="id" size="30" placeholder="아이디 입력">
+  	 <input type="text" name="id" id="id" size="30" placeholder="아이디 입력"> 
+  	 <input type="button" value="중복체크" onclick="loginCheck()">
   	 <div id="idDiv"></div>
   	</td>
   </tr>
