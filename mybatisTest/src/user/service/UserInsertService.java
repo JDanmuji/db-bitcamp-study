@@ -14,7 +14,7 @@ public class UserInsertService implements UserService {
 	public void execute() {
 		System.out.println();
 		UserDTO userDTO = new UserDTO();
-		UserDAO userDAO = new UserDAO();
+		UserDAO userDAO = UserDAO.getInstance();
 		//Scanner scan = new Scanner(System.in);
 		
 		System.out.print("이름 입력 : ");

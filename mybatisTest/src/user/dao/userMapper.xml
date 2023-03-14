@@ -4,10 +4,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="userSQL">
+
+	<resultMap type="user" id="userResult">
+		<result column="NAME" property="name"/>
+		<result column="ID" property="id"/>
+		<result column="PWD" property="pwd"/>
+	</resultMap>
 	
-	<insert id="write" parameterType="user.bean.UserDTO">
+	<insert id="write" parameterType="user">
 		INSERT INTO USERTABLE VALUES(#{name}, #{id}, #{pwd})
 	</insert>
+	
+	
+	<select id="getUserList" resultMap="userResult">
+		SELECT
+			name as "name"
+			, id as "id"
+			, pwd as "pwd"
+		FROM USERTABLE
+	</select>
+	
+	<select id="userSelect" parameterType="user" resultType="Integer">
+		SELECT
+			count(*) as "cnt"
+		FROM USERTABLE
+		WHERE id = '${id}'
+	</select>
+	
+	<update id="update" parameterType="user">
+		update USERTABLE set
+			name = #{name}
+			, pwd = #{pwd}
+		where id = '${id}'
+	</update>
+	
+	<select id="search" parameterType="user" resultMap="userResult">
+		SELECT
+			name as "name"
+			, id as "id"
+			, pwd as "pwd"
+		FROM USERTABLE
+		WHERE 1 = 1
+		<if test="id != null"> 
+			AND	id like '%' || #{id} || '%' 
+		</if>
+		<if test="name != null">
+			AND name like '%' ||  #{name} || '%' 
+		</if>
+	</select>
+	
+	<delete id="delete" parameterType="user">
+		DELETE FROM USERTABLE WHERE id = #{id}
+	</delete>
 
 
 </mapper>
