@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberSQL">
+
+
+	<resultMap type="member" id="memberResult">
+		<result column="NAME" property="name"/>
+		<result column="ID" property="id"/>
+		<result column="PWD" property="pwd"/>
+		<result column="GENDER" property="gender"/>
+		<result column="EMAIL1" property="email1"/>
+		<result column="EMAIL2" property="email2"/>
+		<result column="TEL1" property="tel1"/>
+		<result column="TEL2" property="tel2"/>
+		<result column="TEL3" property="tel3"/>
+		<result column="ZIPCODE" property="zipcode"/>
+		<result column="ADDR1" property="addr1"/>
+		<result column="ADDR2" property="addr2"/>
+		
+	</resultMap>
+
+
+	<insert id="memberWrite" parameterType="member">
+		INSERT INTO member VALUES
+            (
+              '${name}'
+              , '${id}'
+              , '${pwd}'
+              , '${gender}'
+             
+	              , '${email1}'          	
+             
+	               , '${email2}'        	
+             
+	              , '${tel1}'      	
+             
+					, '${tel2}'       	
+             
+	              , '${tel3}'         	
+             
+	             , '${zipcode}'     	
+             
+	              , '${addr1}'     	
+             
+	              , '${addr2}'     	
+             
+              , SYSDATE
+            )
+	</insert>
+	
+	<select id="memberSearch"  parameterType="String"  resultMap="memberResult">
+		SELECT * FROM member WHERE id='${id}'
+	</select>
+	
+	<select id="memberLogin" parameterType="java.util.Map" resultType="String">
+		SELECT * FROM MEMBER where id='${id}' AND pwd='${pwd}'
+	</select>
+
+	<update id="memberUpdate" parameterType="member">
+		UPDATE member
+		SET    NAME = '${name}'
+		      , pwd = '${pwd}'
+		      , gender = '${gender}'
+		      , email1 = '${email1}'
+		      , email2 = '${email2}'
+		      , tel1 = '${tel1}'
+		      , tel2 = '${tel2}'
+		      , tel3 = '${tel3}'
+   	           <if test="zipcode != null and zipcode != ''">	
+		      	, zipcode = '${zipcode}'
+		       </if>
+		       <if test="addr1 != null  and addr1 != ''">
+		      	, addr1 = '${addr1}'
+		      	</if>
+		      	<if test="addr2 != null  and addr2 != ''">
+		      	, addr2 = '${addr2}'
+		      	</if>
+		WHERE  id = '${id}' 
+	</update>
+	
+	<delete id="memberDelete" parameterType="member">
+		DELETE from MEMBER where id='${id}' AND pwd='${pwd}'
+	</delete>
+
+</mapper>
