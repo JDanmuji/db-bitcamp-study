@@ -15,8 +15,8 @@
 		
 		<!-- Wrapper -->
 			<div id="wrapper">
-				<article id="contact">
-					<h2 class="major">Contact</h2>
+				<article id="LOGIN">
+					<h2 class="major">LOGIN</h2>
 						<form name="loginForm" method="post" action="login.jsp">
 							<table>							
 								<tr>
@@ -50,7 +50,12 @@
 					
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
 					</footer>
 				
 			</div>
