@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <mapper namespace="boardSQL">
+ 	<resultMap type="board" id="boardResult">
+ 		<result column="SEQ" property="seq"/>
+ 		<result column="ID" property="id"/>
+ 		<result column="NAME" property="name"/>
+ 		 <result column="EMAIL" property="email"/>
+ 		<result column="SUBJECT" property="subject"/>
+ 		<result column="CONTENT" property="content"/>
+ 		<result column="REF" property="ref"/>
+ 		<result column="LEV" property="lev"/>
+ 		<result column="STEP" property="step"/>
+ 		<result column="PSEQ" property="pseq"/>
+ 		<result column="REPLY" property="reply"/>
+ 		<result column="HIT" property="hit"/>
+ 		<result column="LOGTIME" property="logtime"/>
+ 	</resultMap>
+ 	
+ 	<insert id ="boardWrite" parameterType="board.bean.BoardDTO">
+ 		insert into board values(seq=seq_board.nextval,id, #{name},#{email},#{subject},
+ 							     #{content},ref=seq_board.currval)
+ 	</insert>
+ 	
+ 	<select id ="boardList" parameterType="java.util.Map" resultType="board">
+ 		select * from(select rownum rn, aa.* from (select *from board order by ref desc, step asc)aa) 
+ 					 where RN<![CDATA[>=]]>=#{startNum} and RN<![CDATA[<=]]>=#{endNum}
+ 	</select>
+ 	
+ 	<select id ="getTotalA" parameterType="int">
+ 		select count(*) from board
+ 	</select>
+ 	
+ 	 <select id ="getBoard" parameterType="board.bean.BoardDTO" resultType="board">
+ 		select * from board where seq=#{seq}
+ 	</select>
+ 	
+</mapper>
