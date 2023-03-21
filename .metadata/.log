@@ -3930,3 +3930,6 @@ java.lang.Error: SWT Resource was not properly disposed
 
 !ENTRY org.eclipse.lsp4e 1 0 2023-03-20 21:40:36.221
 !MESSAGE [Info]	[lspserver] Using Typescript version (bundled) 4.9.3 from path "E:\java_se\eclipse\plugins\org.eclipse.wildwebdeveloper_1.0.1.202211171559\node_modules\typescript\lib\tsserver.js"
+
+!ENTRY org.eclipse.wst.server.core 4 0 2023-03-21 09:46:23.764
+!MESSAGE Server Tomcat v9.0 Server at localhost failed to start.
