@@ -1831,3 +1831,21 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.lsp4e 1 0 2023-03-23 15:21:13.909
 !MESSAGE [Info]	[lspserver] Using Typescript version (bundled) 4.9.3 from path "E:\java_se\eclipse\plugins\org.eclipse.wildwebdeveloper_1.0.1.202211171559\node_modules\typescript\lib\tsserver.js"
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-03-23 15:29:03.886
+!MESSAGE [Info]	ESLint server running in node v18.12.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-03-23 15:29:04.172
+!MESSAGE [Info]	[lspserver] Using Typescript version (bundled) 4.9.3 from path "E:\java_se\eclipse\plugins\org.eclipse.wildwebdeveloper_1.0.1.202211171559\node_modules\typescript\lib\tsserver.js"
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-03-23 16:36:24.095
+!MESSAGE [Info]	ESLint server running in node v18.12.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-03-23 16:36:24.378
+!MESSAGE [Info]	[lspserver] Using Typescript version (bundled) 4.9.3 from path "E:\java_se\eclipse\plugins\org.eclipse.wildwebdeveloper_1.0.1.202211171559\node_modules\typescript\lib\tsserver.js"
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-03-23 18:04:45.244
+!MESSAGE [Info]	ESLint server running in node v18.12.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2023-03-23 18:04:45.532
+!MESSAGE [Info]	[lspserver] Using Typescript version (bundled) 4.9.3 from path "E:\java_se\eclipse\plugins\org.eclipse.wildwebdeveloper_1.0.1.202211171559\node_modules\typescript\lib\tsserver.js"
