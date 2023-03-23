@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="boardSQL">
+
+
+	<resultMap type="board" id="boardResult">
+		<result column="SEQ" property="seq"/>
+		<result column="ID" property="id"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="SUBJECT" property="subject"/>
+		<result column="CONTENT" property="content"/>
+		<result column="REF" property="ref"/>
+		<result column="LEV" property="lev"/>
+		<result column="STEP" property="step"/>
+		<result column="PSEQ" property="pseq"/>
+		<result column="REPLY" property="reply"/>
+		<result column="HIT" property="hit"/>
+		<result column="LOGTIME" property="logTime"/>
+	</resultMap>
+
+
+	<insert id="boardWrite" parameterType="board">
+		INSERT INTO board
+			SELECT seq_board.NEXTVAL,
+			       	m.id,
+			       m.name,
+			       ( m.email1
+			         || '@'
+			         || m.email2 ) AS email,
+			       '${subject}',
+			       '${content}',
+			       seq_board.CURRVAL,
+			       0,
+			       0,
+			       0,
+			       0,
+			       0,
+			       SYSDATE
+			FROM   member m
+			WHERE  m.id = '${id}'
+	</insert>
+	
+	<select id="boardList" parameterType="java.util.Map"  resultMap="boardResult">
+		SELECT b.seq,
+		       b.subject,
+		       b.name,
+		       b.hit,
+		       b.logtime
+		FROM   (SELECT ROWNUM AS rn,
+		               a.*
+		        FROM   (SELECT seq,
+		                       subject,
+		                       name,
+		                       hit,
+		                       To_char(logtime, 'YYYY.MM.DD') AS logtime
+		                FROM   board
+		                WHERE 1=1 
+		                <if test="search == 'writer' and listSearch != null  and listSearch != ''">	
+		      				 AND name like '%' ||'${listSearch}' || '%'
+		       			</if>
+		       			<if test="search == 'subject' and listSearch != null  and listSearch != ''">	
+		      				 AND subject like '%' ||'${listSearch}' || '%'
+		       			</if>
+		                ORDER  BY seq DESC) a) b
+		WHERE   b.rn <![CDATA[>= ]]> ${startNum}
+		       AND b.rn <![CDATA[<=]]> ${endNum} 
+	</select>
+	
+	<select id="boardSelect" parameterType="java.util.Map" resultType="board">
+		SELECT seq,
+		       subject,
+		       content
+		FROM   board
+		WHERE  seq = ${seq} 
+	</select>
+	
+	<select id="getTotal" parameterType="java.util.Map" resultType="Integer">
+		select 
+			count(*) as cnt 
+		from board 
+		where 1=1
+		<if test="search == 'writer' and listSearch != null  and listSearch != ''">	
+			AND name like '%' ||'${listSearch}' || '%'
+		</if>
+		<if test="search == 'subject' and listSearch != null  and listSearch != ''">	
+			 AND subject like '%' ||'${listSearch}' || '%'
+		</if> 
+	</select>
+
+
+</mapper>
