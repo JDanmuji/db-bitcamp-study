@@ -23,7 +23,7 @@ public class LoginService implements CommandProcess {
 		
 		if (name == null) {
 			
-			view = "/loginForm.jsp";
+			view = "/member/loginFail.jsp";
 			
 		} else {
 			
@@ -32,7 +32,7 @@ public class LoginService implements CommandProcess {
 			session.setAttribute("memName", name);
 			session.setAttribute("memId", id);
 			
-			view = "/index.jsp";
+			view = "/member/loginOk.jsp";
 		}
 		
 		return view;

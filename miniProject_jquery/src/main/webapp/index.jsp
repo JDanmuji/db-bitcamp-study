@@ -72,8 +72,11 @@ html {
 		</div>
 		<div id="section">
 			<c:if test="${empty display}">
-				<h3>WECLOME TO MY WORLD</h3>
-				<img src="/images/main.png" width="80" height="80">
+				<h2>집 가구 싶당</h2>
+				<h2>&emsp;.</h2>
+				<h2>&emsp;&emsp;.</h2>
+				<h2>&emsp;&emsp;&emsp;.</h2>
+				<img src="/images/main3.jpg">
 			</c:if>
 			<c:if test="${not empty display}">
 				<jsp:include page="${display}" />

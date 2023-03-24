@@ -14,7 +14,7 @@ form[name='writeForm'] div {
 </style>
 </head>
 <body>
-<form name="writeForm" method="post" action="write.jsp">
+<form name="writeForm" id="writeForm">
  <table border="1" cellpadding="5" cellspacing="0">
   <tr>
   	<th>이름</th>
@@ -28,7 +28,7 @@ form[name='writeForm'] div {
   	<th>아이디</th>
   	<td>
   	 <input type="text" name="id" id="id" size="30" placeholder="아이디 입력"> 
-  	 <input type="button" value="중복체크" onclick="loginCheck()">
+  	 <input type="button" value="중복체크" id="checkId">
   	 <div id="idDiv"></div>
   	</td>
   </tr>
@@ -103,7 +103,7 @@ form[name='writeForm'] div {
   
   <tr>
   	<td colspan="2" align="center">
-  	 <input type="button" value="회원가입" onclick="checkWrite()">
+  	 <input type="button" id="writeBtn" value="회원가입" >
   	 <input type="reset" value="다시작성">
   	</td>
   </tr>
@@ -112,6 +112,124 @@ form[name='writeForm'] div {
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="../js/member.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+
+	
+	$('#checkId').click(function() {
+		
+		$('#idDiv').empty();
+		$('#idDiv').css('color','');
+		
+		if ($('#id').val() == '' ) {
+			$('#idDiv').text('아이디 입력');
+			$('#id').focus();
+			return;
+		}
+		
+	
+		$.ajax({
+			type : 'post', //get or post
+			url : '/member/checkId.do',
+			data : {
+				'id' : $('#id').val()
+				
+			},
+			dataType : 'text',
+			success : function(result) {
+				result = result.trim();
+				if (result == 'exist') {
+					$('#idDiv').text('사용불가능');
+					$('#id').focus();	
+				} else {
+					$('#idDiv').text('사용 가능');
+					$("#idDiv").css('color', 'blue');
+				}
+				
+			},
+			error : function(err) {
+				console.log(err);
+			}
+			
+		});
+	});
+
+
+
+	$('#writeBtn').click(function() {
+		
+		$('#idDiv').empty();
+	
+		$('#pwdDiv').empty();
+		$('#nameDiv').empty();
+		
+		
+		if ($('#id').val() == '' ) {
+			$('#idDiv').text('아이디 입력');
+			$('#id').focus();
+			return;
+		}
+		
+		if ($('#name').val() == '' ) {
+			$('#nameDiv').text('이름 입력');
+			$('#name').focus();
+			return;
+		}
+		
+		if ($('#pwd').val() == '' ) {
+			$('#pwdDiv').text('비밀번호 입력');
+			$('#pwd').focus();
+			return;
+		}
+		
+		if ($('#pwd').val() !==$('#repwd').val()) {
+			$('#pwdDiv').text('비밀번호가 맞지 않습니다');
+			$('#pwd').focus();
+			return;
+		}
+		
+		
+		$.ajax({
+			type : 'post', //get or post
+			url : '/member/write.do',
+			data : {
+				'name' : $('#name').val(),
+				'id' : $('#id').val(),
+				'pwd' : $('#pwd').val(),
+				'gender' : $('#gender').val(),
+				'email1' : $('#email1').val(),
+				'email2' : $('#email2').val(),
+				'tel1' : $('#tel1').val(),
+				'tel2' : $('#tel2').val(),
+				'tel3' : $('#tel3').val(),
+				'zipcode' : $('#zipcode').val(),
+				'addr1' : $('#addr1').val(),
+				'addr2' : $('#addr2').val()
+				
+				
+			},
+			dataType : 'text',
+			success : function(result) {
+			
+				result = result.trim();
+				
+				if (result == 'ok') {
+					location.href= '../index.jsp';	
+				} else {
+					alert('회원가입에 실패했습니다.');
+				}
+							
+				
+			},
+			error : function(err) {
+				console.log(err);
+			}
+			
+		});
+	});
+
+
+</script>
 
 </body>
 </html>

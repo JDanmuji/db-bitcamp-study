@@ -16,7 +16,7 @@ form[name='loginForm'] div {
 </head>
 <body>
 
-<form name="loginForm" method="post" action="/member/login.do">
+<form name="loginForm" id="loginForm">
  <table border="1" cellpadding="5" cellspacing="0">
    <tr>
   	<th>아이디</th>
@@ -36,14 +36,72 @@ form[name='loginForm'] div {
   
    <tr>
   	<td colspan="2" align="center">
-  	 <input type="button" value="로그인" onclick="checkLogin()">
+  	 <input type="button" value="로그인" id="loginBtn" >
 	 <input type="button" value="회원가입" onclick="location.href='writeForm.jsp'">
   	</td>
   </tr>
  </table>
+ 
+ 	<div id="loginResult"></div>
 </form>
 
 <script type="text/javascript" src="../js/member.js"></script>
+<script type="text/javascript" src="../js/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+
+
+
+
+
+
+$('#loginBtn').click(function() {
+	$('#idDiv').empty();
+	$('#pwdDiv').empty();
+	
+	if ($('#id').val() == '' ) {
+		$('#idDiv').text('아이디 입력');
+		$('#id').focus();
+		return;
+	}
+	
+	if ($('#pwd').val() == '' ) {
+		$('#pwdDiv').text('비밀번호 입력');
+		$('#pwd').focus();
+		return;
+	}
+	
+	
+	$.ajax({
+		type : 'post', //get or post
+		url : '/member/login.do',
+		data : {
+			'id' : $('#id').val(),
+			'pwd' : $('#pwd').val()
+		},
+		dataType : 'text',
+		success : function(data) {
+			data = data.trim();
+			
+			alert(data);
+			if(data == 'ok') {
+				location.href= '../index.jsp';
+			} else if(data === 'fail') {
+				
+				$("#loginResult").text('아이디 또는 비밀번호가 맞지 않습니다');
+				$("#loginResult").css('font-size', '12pt');
+			}
+			
+		},
+		error : function(err) {
+			console.log(err);
+		}
+		
+	});
+	
+});
+
+</script>
+
 
 </body>
 </html>

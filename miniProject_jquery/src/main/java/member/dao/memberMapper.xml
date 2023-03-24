@@ -84,5 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="memberDelete" parameterType="member">
 		DELETE from MEMBER where id='${id}' AND pwd='${pwd}'
 	</delete>
+	
+	<select id="isExistId" parameterType="String"  resultType="Integer">
+ 		select count(*) as cnt from member where id=#{id}
+ 	</select> 
 
 </mapper>

@@ -18,7 +18,7 @@ public class LogoutService implements CommandProcess {
 		session.removeAttribute("memName");
 		session.removeAttribute("memId");		
 		
-		return "/member/logout.jsp";
+		return "/index.jsp";
 	}
 
 }

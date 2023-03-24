@@ -119,6 +119,21 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	
+
+	 public boolean isExistId(String id) { 
+		 SqlSession sqlSession = sqlSessionFactory.openSession();// 생성
+		 int existId = sqlSession.selectOne("memberSQL.isExistId", id);
+		 sqlSession.commit();
+		 
+		 boolean result = existId > 0 ? true: false;
+		 
+		 return result;
+			 
+	 }
+	 
+	 
 }
 
 
