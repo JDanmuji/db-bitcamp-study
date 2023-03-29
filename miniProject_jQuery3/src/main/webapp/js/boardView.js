@@ -12,8 +12,11 @@ $(document).ready(function(){
 		success: function(data){
 			
 			
-			$('#subject').val(data.boardDTO.subject);
-			$('#content').val(data.boardDTO.content);
+			$('td.subject').text(data.boardDTO.subject);
+			$('td.seq').text('글번호 : ' + data.boardDTO.seq);
+			$('td.name').text('작성자 : ' + data.boardDTO.name);
+			$('td.hit').text('조회수 : ' + data.boardDTO.hit);
+			$('td  div').html('<pre>' + data.boardDTO.content +'</pre>');
 			
 			
 		},
@@ -22,6 +25,7 @@ $(document).ready(function(){
 		}		                          
 	});
 });
+
 
 
 
