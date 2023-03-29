@@ -79,6 +79,8 @@ public class MemberDAO {
 		param.put("id", id);
 		param.put("pwd", pwd);
 		
+		System.out.println(param);
+		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		String name = sqlSession.selectOne("memberSQL.memberLogin", param);
 		sqlSession.close();

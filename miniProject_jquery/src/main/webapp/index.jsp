@@ -61,8 +61,9 @@ html {
 <div id="warp">
 	<div id="header">
 		
-		<h1><img src="/images/main.png" width="80" height="80">
-		MVC를 이용한 미니 프로젝트</h1>
+		<img src="/images/main.png" width="80" height="80" onclick="location.href='../index.jsp'">
+		<h1>MVC를 이용한 미니 프로젝트</h1>
+		<jsp:include page="./main/menu.jsp"></jsp:include>
 	</div>
 	
 	<div id="container">
@@ -72,10 +73,7 @@ html {
 		</div>
 		<div id="section">
 			<c:if test="${empty display}">
-				<h2>집 가구 싶당</h2>
-				<h2>&emsp;.</h2>
-				<h2>&emsp;&emsp;.</h2>
-				<h2>&emsp;&emsp;&emsp;.</h2>
+			
 				<img src="/images/main3.jpg">
 			</c:if>
 			<c:if test="${not empty display}">

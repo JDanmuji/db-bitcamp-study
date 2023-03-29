@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberSQL">
+	<insert id="memberWrite" parameterType="member">
+		INSERT INTO MEMBER
+		VALUES(#{name},#{id},#{pwd},#{gender},#{email1},#{email2},
+			   #{phone1},#{phone2},#{phone3},#{zipcode},#{addr1},#{addr2},SYSDATE)
+	</insert>
+	
+	<!-- resultType 지정해놓으면 같은 이름 찾아서 자동 매핑됨 -->
+	<select id="memberLogin" parameterType="map" resultType="member">
+		SELECT * FROM MEMBER WHERE ID=#{id} AND PWD=#{pwd}
+	</select>
+	
+	<select id="memberUpdateForm" parameterType="String" resultType="member">
+		SELECT * FROM MEMBER WHERE ID=#{id}
+	</select>
+	
+	<update id="memberUpdate" parameterType="member">
+		UPDATE MEMBER
+		SET NAME=#{name}, PWD=#{pwd}, GENDER=#{gender}, EMAIL1=#{email1}, EMAIL2=#{email2},
+			PHONE1=#{phone1}, PHONE2=#{phone2}, PHONE3=#{phone3}, ZIPCODE=#{zipcode}, ADDR1=#{addr1}, ADDR2=#{addr2}
+		WHERE ID=#{id}
+	</update>
+	
+	<delete id="memberDelete" parameterType="String">
+		DELETE FROM MEMBER WHERE ID=#{id}
+	</delete>
+	
+	<select id="checkId" parameterType="String" resultType="member">
+		SELECT * FROM MEMBER WHERE ID=#{id}
+	</select>
+</mapper>

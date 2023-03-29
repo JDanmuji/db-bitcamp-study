@@ -41,15 +41,8 @@
 			dataType : 'text',
 			success : function(data) {
 				
-				/* alert(data); */
-				/* if(data) {
-					location.href= '../index.jsp';
-				} else if(data === 'fail') {
-					
-					$("#loginResult").text('아이디 또는 비밀번호가 맞지 않습니다');
-					$("#loginResult").css('font-size', '12pt');
-				}
-				 */
+				alert("로그아웃");
+				location.href = '../index.jsp';
 			},
 			error : function(err) {
 				console.log(err);

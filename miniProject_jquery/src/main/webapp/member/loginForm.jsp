@@ -10,7 +10,13 @@ form[name='loginForm'] div {
 	color: red;
 	font-size: 8pt;
 	font-weight: bold;
+	display: flex;
+   	flex-direction: column;
+   	align-items: center;
+   	margin: 0 auto;
+   	text-align: left;
 }
+ 
 
 </style>
 </head>

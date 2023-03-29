@@ -73,7 +73,7 @@
 				<article id="LIST">
 					<h2 class="major">LIST</h2>
 						<form name="boardForm" method="post" action="boardWrite.jsp">
-							<table>							
+							<table id="boardListTable">							
 								<thead>
 								  	<tr>
 								  		<th width="50">No</th>
@@ -83,7 +83,7 @@
 								  		<th width="100">Date</th>
 								  	</tr>
 								  </thead>
-								  
+								  <%-- 
 								  <tbody>
 								  
 								  	<c:forEach var="list" items="${list}">
@@ -96,12 +96,12 @@
 								        </tr>
 								    </c:forEach>
 								  
-								 </tbody>
+								 </tbody> --%>
 								 
 								  
 							</table>
 							
-								<div class="divPaging" align="center" style="font: bold italic 2.0em/1.0em;" >	
+								<div id=boardPagingDiv class="divPaging" align="center" style="font: bold italic 2.0em/1.0em;" >	
 							 		<%=boardPaging.getPagingHTML() %>
 							    </div>
 							
@@ -146,6 +146,7 @@
 			<script src="../assets/js/breakpoints.min.js"></script>
 			<script src="../assets/js/util.js"></script>
 			<script src="../assets/js/main.js"></script>
+			
 						
 			<script type="text/javascript">
 			
