@@ -60,7 +60,40 @@ public class BoardDAO {
 		return boardDTO;
 	}
 
+	public void boardUpdate(Map<String, String> map) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("boardSQL.boardUpdate", map);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
+
+	public void boardReply(Map<String, Object> map) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.getBoard", map.get("pseq"));
+		
+		//step update
+		sqlSession.update("boardSQL.boardReply1", boardDTO);
+		// update board set step=step+1 where ref=원글ref and step>원글 step
+		
+		// insert
+		// 답글 ref= 원글 ref
+		// 답글lev = 원글 lev+1
+		// 답글step = 원글 step +1
+		map.put("ref", boardDTO.getRef());
+		map.put("lev", boardDTO.getLev()+1);
+		map.put("step", boardDTO.getStep()+1);
+		sqlSession.insert("boardSQL.boardReply2", map);
+		
+		//reply update
+		//update board set reply=reply+1 where seq=원글번호
+		sqlSession.update("boardSQL.boardReply3", boardDTO.getSeq());
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
 }
+
 
 
 

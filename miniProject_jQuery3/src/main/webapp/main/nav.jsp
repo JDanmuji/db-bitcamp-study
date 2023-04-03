@@ -7,7 +7,7 @@
 		<input type="button" value="로그인" 
 		       onclick="location.href='/member/loginForm.do'"><br><br>
 		<input type="button" value="회원가입"
-			   onclick="location.href='/member/writeForm.do'"><br><br>
+			   onclick="location.href='member/writeForm.do'"><br><br>
 	</c:if>
 	
 	<c:if test="${memId != null }">

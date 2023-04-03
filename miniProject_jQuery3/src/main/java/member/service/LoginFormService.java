@@ -9,7 +9,6 @@ public class LoginFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		
 		return "/member/loginForm.jsp";
 	}
 

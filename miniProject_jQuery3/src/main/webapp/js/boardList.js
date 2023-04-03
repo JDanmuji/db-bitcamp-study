@@ -13,7 +13,7 @@ $(document).ready(function(){
 			
 			$.each(data.list, function(index, items){
 				console.log(index + ', seq=' + items.seq + ', name=' + items.name);
-				
+				console.log(items);
 				$('<tr/>').append($('<td/>',{
 					align: 'center',
 					text: items.seq
@@ -22,7 +22,7 @@ $(document).ready(function(){
 					
 					}).append($('<a/>',{
 						href: '#',
-						class: 'subjectA',
+						class: 'subjectA subjectA_' + items.seq,
 						text: items.subject 
 					}))
 				
@@ -36,6 +36,20 @@ $(document).ready(function(){
 					align: 'center',
 					text: items.logtime
 				})).appendTo($('#boardListTable'))
+				
+				for (var i=1; i <= items.lev; i++) {
+				
+					console.log(1);	
+						$('.subjectA_' + items.seq).before('&emsp;');
+						
+					if (items.pseq != 0 ) {
+						console.log(2);	
+						$('.subjectA_'+ items.seq).before($('<img/>', {
+							'src' : 'http://localhost:8080/image/reply.gif'
+						}));
+					}
+					
+				}
 			});
 			
 			//페이징 처리
